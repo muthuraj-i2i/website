@@ -19,14 +19,18 @@ from typing import Dict
 
 class AlexNetModel(kserve.Model):
     def __init__(self, name: str):
-       super().__init__(name)
+       super().__init__(name, return_response_headers=True)
        self.name = name
        self.load()
 
     def load(self):
         pass
 
-    def predict(self, request: Dict) -> Dict:
+    def predict(self,
+        input_tensor: torch.Tensor,
+        headers: Dict[str, str] = None,
+        response_headers: Dict[str, str] = None,
+    ) -> -> Union[Dict, InferResponse]:
         pass
 
 if __name__ == "__main__":
